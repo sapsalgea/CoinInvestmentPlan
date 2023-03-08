@@ -3,11 +3,36 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NotFound from './pages/NotFound';
+import MainPage from './pages/MainPage';
+import Deposit from './pages/Deposit';
+import Savings from './pages/Savings';
+import AnnuitySaving from './pages/AnnuitySaving';
+
+
+const router = createBrowserRouter([
+  {
+    path : '/',
+    element : <App />,
+    errorElement : <NotFound />,
+    children : [
+      { index : true, element :<MainPage/> },
+      { path : 'deposit', element : <Deposit/> },
+      { path : 'deposit/:bankname', element : <Deposit/> },
+      { path : 'savings', element : <Savings/>},
+      { path : 'savings/:bankname', element : <Savings/>},
+      { path : 'AnnuitySaving', element : <AnnuitySaving/>},
+      { path : 'AnnuitySaving/:bankname', element : <AnnuitySaving/>},
+
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
