@@ -1,9 +1,10 @@
 import React from 'react';
+import MainpageDeposit from '../components/home/MainpageDeposit';
 
 export default function MainPage() {
     return (
         <div>
-            메인페이지
+            <MainpageDeposit></MainpageDeposit>
         </div>
     );
 }
