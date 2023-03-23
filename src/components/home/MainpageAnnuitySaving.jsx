@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 
-export default function MainpageAnnuitySaving({resultMainData}) {
+export default function MainpageAnnuitySaving({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
    
     const [annuitySaving, setAnnuitySaving] =  useState('201');
     const [annuitySavingName, setAnnuityName] =  useState('금리연동형');
-
-    const notClickedBtnStyle = "bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600";
-    const clickedBtnStyle = "bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
 
     return (
         <>

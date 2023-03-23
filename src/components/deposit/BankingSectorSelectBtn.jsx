@@ -1,42 +1,42 @@
 import React from 'react';
 
-export default function BankingSectorSelectBtn({deposit, setDeposit, notClickedBtnStyle, clickedBtnStyle}) {
+export default function BankingSectorSelectBtn({bankingSector, setBankingSector, notClickedBtnStyle, clickedBtnStyle, commonBtnStyle}) {
 
     
     return (
-        <>
-            <div className="w-56">
-                <div className="rounded-full flex items-center mt-10">
-                    
-                    <p>금융권역</p>
+        <div className='flex items-center mt-10'>
 
+            <div className='mx-auto w-full sm:w-2/3 lg:w-1/2'>
+                <span className="inline-block text-gray-500 text-sm md:text-base font-semibold ">금융권역</span>
+
+                <div className="flex flex-wrap items-center mt-2 flex-nowrap">
                     <button onClick= {
                            () =>{
-                            setDeposit("all"); 
+                            setBankingSector("all-bankingSector"); 
                         }
-                    } className={`${deposit === "all" ? clickedBtnStyle : notClickedBtnStyle} rounded-full py-4 px-6 mr-1`} id="monthly">
+                    } className={`${bankingSector === "all-bankingSector" ? clickedBtnStyle : notClickedBtnStyle} ${commonBtnStyle}`} id="monthly">
                         전체
                     </button>
 
                     <button onClick= {
                            () =>{
-                            setDeposit("020000"); 
+                            setBankingSector("020000"); 
                         }
-                    } className={`${deposit === "020000" ? clickedBtnStyle : notClickedBtnStyle} rounded-full py-4 px-6 mr-1`} id="monthly">
+                    } className={`${bankingSector === "020000" ? clickedBtnStyle : notClickedBtnStyle} ${commonBtnStyle}`} id="monthly">
                         은행
                     </button>
 
                    <button onClick= {
                        () =>{
-                            setDeposit("030300"); 
+                            setBankingSector("030300"); 
                        }
-                    } className={`${deposit === "030300" ? clickedBtnStyle : notClickedBtnStyle} rounded-full py-4 px-6 mr-1`} id="annually">
+                    } className={`${bankingSector === "030300" ? clickedBtnStyle : notClickedBtnStyle} ${commonBtnStyle}`} id="annually">
                        저축은행
                     </button>
                 </div>
             </div>
             
-        </>
+        </div>
     );
 }
 

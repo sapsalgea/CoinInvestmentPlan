@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 
-export default function MainpageSavings({resultMainData}) {
+export default function MainpageSavings({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
 
     const [savings, setSavings] =  useState('020000');
-    const notClickedBtnStyle = "bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600";
-    const clickedBtnStyle = "bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
-
+   
     return (
         <>
             <div className="xl:mx-auto xl:container py-20 2xl:px-0 px-6">
