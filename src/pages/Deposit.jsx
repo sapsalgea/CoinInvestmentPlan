@@ -1,38 +1,58 @@
 import React from 'react';
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import BankingSectorSelectBtn from '../components/deposit/BankingSectorSelectBtn';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PeriodSelectBtn from '../components/deposit/PeriodSelectBtn';
 import InterestSelectBtn from '../components/deposit/InterestSelectBtn';
 import DepositList from '../components/deposit/DepositList';
-
+import { useInView } from 'react-intersection-observer';
+import depositBankNameList from '../json/depositBankNameList.json';
 
 export default function Deposit() {
 
     const [bankingSector, setBankingSector] =  useState('all-bankingSector');
     const [period, setPeriod] =  useState('12');
     const [interest, setInterest] =  useState('all-interest');
+    
 
+    
 
     const notClickedBtnStyle = "bg-white hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600 border rounded-md transition duration-100";
     const clickedBtnStyle = "bg-indigo-500 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
     const commonBtnStyle = "rounded-md py-4 px-6 mr-1 basis-1/3";
 
-    let result = useQuery([`${bankingSector}_${period}_${interest}`], () => 
-        axios.get(`https://www.coininvestmentplan.com/api/deposit/search_deposit.php?topFinGrpNo=${bankingSector}&intr_rate_type=${interest}&save_trm=${period}`)
-        .then((list) =>{
-            console.log(`${bankingSector}_${period}_${interest}`);
-            //console.log(`https://www.coininvestmentplan.com/api/deposit/search_deposit.php?topFinGrpNo=${bankingSector}&intr_rate_type=${interest}&save_trm=${period}`);
-            //list.data = list.data.sort((a, b) => Math.floor(b.optionList__intr_rate2) - Math.floor(a.optionList__intr_rate2)); 
-            return list.data
-         }),
-         {staleTime : 500000,
-          cacheTime: Infinity},
 
-         {select:data => data.sort((a, b) => Math.floor(b.optionList__intr_rate2) - Math.floor(a.optionList__intr_rate2))}
-         
+    
+
+    //인피니트 유즈쿼리
+    const fetchRepositories = ({ pageParam = 0 }) => 
+        axios.get(`https://www.coininvestmentplan.com/api/deposit/search_deposit.php?topFinGrpNo=${bankingSector}&intr_rate_type=${interest}&save_trm=${period}&page_num=${pageParam}`,
+        { params: { page: pageParam } });
+        
+      
+    let result = useInfiniteQuery(
+        [`${bankingSector}_${period}_${interest}`], 
+        fetchRepositories,
+        {
+          getNextPageParam: (lastPage, allPages) => {
+        
+            const nextPage = allPages.length * 10;
+            return nextPage 
+          }
+        }
     )
+
+    
+     //무한 스크롤
+     const [ref, inView] = useInView();
+    
+     useEffect(() => {
+         if (inView) {
+           result.fetchNextPage()
+           console.log("바닥");
+         }
+     }, [inView, result]);
 
     return (
         <div>
@@ -65,9 +85,10 @@ export default function Deposit() {
                 </div>
 
             </div>
-            {result.data && <DepositList result={result.data}/>}
-        
-            
+            {result.isSuccess && <p>{console.log(result.data.pages)}</p>}
+            {result.data && <DepositList result={result.data.pages} innerRef={ref}/>}
+           
+
         </div>
     );
 }
