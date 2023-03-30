@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function BankNameListCard({ depositBankNameList, topFinGrpNo }) {
+export default function BankNameListCard({ copyDepositBankNameList, setCopyDepositBankNameList, topFinGrpNo }) {
 
   const onErrorImg = (e) => {
     e.target.src = `${process.env.PUBLIC_URL}/image/bankImage/noimage.png`;
   };
 
-  const[copyDepositBankNameList, setCopyDepositBankNameList] =  useState([...depositBankNameList]);
-  
+
+ 
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function BankNameListCard({ depositBankNameList, topFinGrpNo }) {
       </p>
 
       <div className='flex flex-wrap justify-center'>
-        {depositBankNameList
+        {copyDepositBankNameList
           
           .filter((bankItem) => bankItem.topFinGrpNo === topFinGrpNo)
           .sort((a, b) =>  b.baseList__kor_co_nm > a.baseList__kor_co_nm ? -1 : 1)

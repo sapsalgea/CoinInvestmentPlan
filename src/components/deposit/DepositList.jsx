@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function DepositList({ result , innerRef  }) {
   
@@ -48,6 +48,7 @@ export default function DepositList({ result , innerRef  }) {
                          {/* 은행 이미지와 은행이름 */}
                          <div className='flex items-center mt-3'>
                             <img
+                              alt={`${depositData.baseList__kor_co_nm} 이미지`}
                               className='rounded-full h-10 w-10 inline' 
                               src={`${process.env.PUBLIC_URL}/image/bankImage/${depositData.baseList__fin_co_no}.png`} onError={onErrorImg}
                             />
@@ -84,7 +85,7 @@ export default function DepositList({ result , innerRef  }) {
 
         })
       }
-        <div ref={innerRef}></div>
+        <div ref={innerRef}>-</div>
         {result.length === 0 ? <p>상품이 존재하지 않습니다.</p> : null}
     </div>
   );

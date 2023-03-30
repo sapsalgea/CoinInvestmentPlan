@@ -1,17 +1,21 @@
 import { React, useState } from "react";
 import BankNameListCard from "./BankNameListCard";
 
-export default function BankNameSelectBtn({ depositBankNameList }) {
+export default function BankNameSelectBtn({ depositBankNameList, setDepositBankNameList, setClickedBankName }) {
   const [showModal, setShowModal] = useState(false);
+  const [copyDepositBankNameList, setCopyDepositBankNameList] = useState('');
 
   return (
-    <>
+    <div className='w-full mr-1'>
       <button
-        className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+        className='w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
         type='button'
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true);
+          setCopyDepositBankNameList(JSON.parse(JSON.stringify(depositBankNameList)));
+        }}
       >
-        Open regular modal
+        은행목록
       </button>
       {showModal ? (
         <>
@@ -34,11 +38,13 @@ export default function BankNameSelectBtn({ depositBankNameList }) {
                 {/*body*/}
                 <div className='relative p-6 overflow-y-scroll  h-1/8'>
                   <BankNameListCard
-                    depositBankNameList={depositBankNameList}
+                    copyDepositBankNameList={copyDepositBankNameList}
+                    setCopyDepositBankNameList={setCopyDepositBankNameList}
                     topFinGrpNo='020000'
                   />
                   <BankNameListCard
-                    depositBankNameList={depositBankNameList}
+                    copyDepositBankNameList={copyDepositBankNameList}
+                    setCopyDepositBankNameList={setCopyDepositBankNameList}
                     topFinGrpNo='030300'
                   />
 
@@ -59,7 +65,19 @@ export default function BankNameSelectBtn({ depositBankNameList }) {
                   <button
                     className='bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
                     type='button'
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                      setDepositBankNameList(copyDepositBankNameList);
+
+                      //클릭된 은행을 추린다.
+                  
+                      const clickedBankNameResult = copyDepositBankNameList.filter(bankItem => bankItem.isSelected).map(selectedBank => selectedBank.baseList__fin_co_no);
+                      let clickedBankNameString = clickedBankNameResult.join("-");
+                      setClickedBankName(clickedBankNameString);
+                      console.log(clickedBankNameString);
+                 
+                      
+                    }}
                   >
                     검색
                   </button>
@@ -70,6 +88,6 @@ export default function BankNameSelectBtn({ depositBankNameList }) {
           <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
         </>
       ) : null}
-    </>
+    </div>
   );
 }
