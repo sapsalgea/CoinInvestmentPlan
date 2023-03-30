@@ -7,13 +7,15 @@ import PeriodSelectBtn from '../components/deposit/PeriodSelectBtn';
 import InterestSelectBtn from '../components/deposit/InterestSelectBtn';
 import DepositList from '../components/deposit/DepositList';
 import { useInView } from 'react-intersection-observer';
-import depositBankNameList from '../json/depositBankNameList.json';
+import JsonDepositBankNameList from '../json/depositBankNameList.json';
+import BankNameSelectBtn from '../components/deposit/BankNameSelectBtn';
 
 export default function Deposit() {
 
     const [bankingSector, setBankingSector] =  useState('all-bankingSector');
     const [period, setPeriod] =  useState('12');
     const [interest, setInterest] =  useState('all-interest');
+    const [depositBankNameList, setDepositBankNameList] = useState(JsonDepositBankNameList);
     
 
     
@@ -23,7 +25,6 @@ export default function Deposit() {
     const commonBtnStyle = "rounded-md py-4 px-6 mr-1 basis-1/3";
 
 
-    
 
     //인피니트 유즈쿼리
     const fetchRepositories = ({ pageParam = 0 }) => 
@@ -60,7 +61,8 @@ export default function Deposit() {
             <BankingSectorSelectBtn bankingSector={bankingSector} setBankingSector={setBankingSector} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
             <PeriodSelectBtn period={period} setPeriod={setPeriod} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
             <InterestSelectBtn interest={interest} setInterest={setInterest} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
-            
+            <BankNameSelectBtn depositBankNameList={depositBankNameList}/>
+
             {result.isLoading && <p>로딩중</p>}
             {result.error && <p>에러남 새로고침필요</p>}
 
