@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function DepositList({ result , innerRef  }) {
   
+  let navigate = useNavigate();
+
   const onErrorImg = (e) => {
     e.target.src = `${process.env.PUBLIC_URL}/image/bankImage/noimage.png`;
   }
@@ -32,6 +35,7 @@ export default function DepositList({ result , innerRef  }) {
                     }
                     role='listitem'
                     className='bg-white cursor-pointer shadow rounded-2xl flex relative mt-5'
+                    onClick={()=>{navigate(`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`)}}
                   >
                     
                     <div className='w-full p-8 pb-12 flex items-center justify-between '>

@@ -72,7 +72,7 @@ export default function BankNameSelectBtn({ depositBankNameList, setDepositBankN
                       //클릭된 은행을 추린다.
                   
                       const clickedBankNameResult = copyDepositBankNameList.filter(bankItem => bankItem.isSelected).map(selectedBank => selectedBank.baseList__fin_co_no);
-                      let clickedBankNameString = clickedBankNameResult.join("-");
+                      let clickedBankNameString = clickedBankNameResult.join("^^");
                       setClickedBankName(clickedBankNameString);
                       console.log(clickedBankNameString);
                  

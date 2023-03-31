@@ -71,9 +71,9 @@ export default function BankSelectModal({ setShowModal, setDepositBankNameList ,
                     const clickedBankNameResult = copyDepositBankNameList
                         .filter((bankItem) => bankItem.isSelected)
                         .map((selectedBank) => selectedBank.baseList__fin_co_no);
-                    let clickedBankNameString = clickedBankNameResult.join("-");
+                    let clickedBankNameString = clickedBankNameResult.join("^^");
                     setClickedBankName(clickedBankNameString);
-                    console.log(clickedBankNameString);
+                    //console.log(clickedBankNameString);
                     
                   }
                   
