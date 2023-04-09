@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import MainpageSavings from '../components/home/MainpageSavings';
 import MainpageAnnuitySaving from '../components/home/MainpageAnnuitySaving';
+import Loading from '../components/common/Loading';
+import LoadingError from '../components/common/LoadingError';
 
 export default function MainPage() {
 
@@ -24,8 +26,8 @@ export default function MainPage() {
         <div>
             
 
-            {result.isLoading && <p>로딩중</p>}
-            {result.error && <p>에러남 새로고침필요</p>}
+            {result.isLoading && <Loading/>}
+            {result.error && <LoadingError/>}
             {result.data && <MainpageDeposit resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}
             {result.data && <MainpageSavings resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}
             {result.data && <MainpageAnnuitySaving resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}

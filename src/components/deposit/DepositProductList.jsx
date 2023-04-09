@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function DepositList({ result , innerRef  }) {
+export default function DepositProductList({ result , innerRef  }) {
   
   let navigate = useNavigate();
 
@@ -90,7 +90,7 @@ export default function DepositList({ result , innerRef  }) {
         })
       }
         <div ref={innerRef}>-</div>
-        {result.length === 0 ? <p>상품이 존재하지 않습니다.</p> : null}
+
     </div>
   );
 }

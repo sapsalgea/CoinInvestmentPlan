@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AlertToast from '../toast/AlertToast';
+import AlertToast from '../../toast/AlertToast';
 import BankNameListCard from "./BankNameListCard";
 
 export default function BankSelectModal({ setShowModal, setDepositBankNameList , setClickedBankName, copyDepositBankNameList, setCopyDepositBankNameList, setBankingSector}) {

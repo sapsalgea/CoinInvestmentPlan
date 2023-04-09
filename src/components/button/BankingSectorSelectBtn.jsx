@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BankSelectModal from './BankSelectModal';
+import BankSelectModal from '../modal/bankSelect/BankSelectModal';
 
 export default function BankingSectorSelectBtn({
   bankingSector,
@@ -33,7 +33,7 @@ export default function BankingSectorSelectBtn({
               bankingSector === "all-bankingSector"
                 ? clickedBtnStyle
                 : notClickedBtnStyle
-            } ${commonBtnStyle}`}
+            } ${commonBtnStyle} whitespace-nowrap`}
             id='monthly'
           >
             전체
@@ -46,7 +46,7 @@ export default function BankingSectorSelectBtn({
             }}
             className={`${
               bankingSector === "020000" ? clickedBtnStyle : notClickedBtnStyle
-            } ${commonBtnStyle}`}
+            } ${commonBtnStyle} whitespace-nowrap`}
             id='monthly'
           >
             은행
@@ -59,7 +59,7 @@ export default function BankingSectorSelectBtn({
             }}
             className={`${
               bankingSector === "030300" ? clickedBtnStyle : notClickedBtnStyle
-            } ${commonBtnStyle}`}
+            } ${commonBtnStyle} whitespace-nowrap`}
             id='annually'
           >
             저축은행
@@ -77,7 +77,7 @@ export default function BankingSectorSelectBtn({
               bankingSector === "bank-selected"
                 ? clickedBtnStyle
                 : notClickedBtnStyle
-            } ${commonBtnStyle}`}
+            } ${commonBtnStyle} whitespace-nowrap`}
             id='annually'
           >
             은행선택

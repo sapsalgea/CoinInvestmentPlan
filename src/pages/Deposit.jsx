@@ -1,14 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import BankingSectorSelectBtn from '../components/deposit/BankingSectorSelectBtn';
+import BankingSectorSelectBtn from '../components/button/BankingSectorSelectBtn';
 import { useState, useEffect } from 'react';
-import PeriodSelectBtn from '../components/deposit/PeriodSelectBtn';
-import InterestSelectBtn from '../components/deposit/InterestSelectBtn';
-import DepositList from '../components/deposit/DepositList';
+import PeriodSelectBtn from '../components/button/PeriodSelectBtn';
+import InterestSelectBtn from '../components/button/InterestSelectBtn';
+import DepositProductList from '../components/deposit/DepositProductList';
 import { useInView } from 'react-intersection-observer';
 import JsonDepositBankNameList from '../json/depositBankNameList.json';
-// import BankNameSelectBtn from '../components/deposit/BankNameSelectBtn';
+import Loading from '../components/common/Loading';
+import NoData from '../components/common/NoData';
+import LoadingError from '../components/common/LoadingError';
+// import BankNameSelectBtn from '../components/button/BankNameSelectBtn';
 
 export default function Deposit() {
 
@@ -26,7 +29,7 @@ export default function Deposit() {
 
 
 
-    //인피니트 유즈쿼리
+    //무한스크롤
     const fetchRepositories = ({ pageParam = 0 }) => 
         axios.get(`https://www.coininvestmentplan.com/api/deposit/search_deposit.php?topFinGrpNo=${bankingSector}&intr_rate_type=${interest}&save_trm=${period}&page_num=${pageParam}&clicked_bank_name=${clickedBankName}`,
         { params: { page: pageParam } });
@@ -82,8 +85,8 @@ export default function Deposit() {
      }, [inView, result, isScrollOk]);
 
     return (
+        
         <div>
-
             <BankingSectorSelectBtn bankingSector={bankingSector} setBankingSector={setBankingSector} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle} depositBankNameList={depositBankNameList} setDepositBankNameList={setDepositBankNameList} setClickedBankName={setClickedBankName}/>
             <PeriodSelectBtn period={period} setPeriod={setPeriod} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
             <InterestSelectBtn interest={interest} setInterest={setInterest} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
@@ -96,22 +99,16 @@ export default function Deposit() {
 
             <div
                 className='mt-10 mx-auto w-full sm:w-2/3 lg:w-1/2'
-                role='list'
             >
             
-            <hr className="h-px my-8 bg-gray-400 border-0"/>
-
-            {result.isLoading &&  <p>로딩중</p>
-            }
-            {result.error && <p>에러남 새로고침필요</p>}
-
-           
-
-            
+                <hr className="h-px my-8 bg-gray-400 border-0"/>
 
             </div>
-            
-            {result.data && <DepositList result={result.data.pages} innerRef={ref}/>}
+
+            {result.isLoading &&  <Loading/>}
+            {result.error && <LoadingError/>}
+            {result.data && result.data.pages[0].data.length === 0 && <NoData />}
+            {result.data && result.data.pages[0].data.length >0 && <DepositProductList result={result.data.pages} innerRef={ref}/>}
            
 
         </div>

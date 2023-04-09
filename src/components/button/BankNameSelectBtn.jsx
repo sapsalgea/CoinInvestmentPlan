@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import BankNameListCard from "./BankNameListCard";
+import BankNameListCard from "../deposit/BankNameListCard";
 
 export default function BankNameSelectBtn({ depositBankNameList, setDepositBankNameList, setClickedBankName }) {
   const [showModal, setShowModal] = useState(false);
