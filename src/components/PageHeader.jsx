@@ -84,7 +84,7 @@ export default function PageHeader() {
                     </li>
                     <li className="text-gray-600 hover:text-blue-600">
 
-                      <NavLink to="/AnnuitySaving" style={({isActive}) => {
+                      <NavLink to="/annuity" style={({isActive}) => {
                         return isActive ? activeStyle : deactiveStyle;
                       }}>연금저축</NavLink>
                       

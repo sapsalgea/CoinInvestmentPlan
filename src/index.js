@@ -13,6 +13,7 @@ import AnnuitySaving from './pages/AnnuitySaving';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"  //1번
 import DepositProduct from './pages/DepositProduct';
 import SavingsProduct from './pages/SavingsProduct';
+import AnnuitySavingProduct from './pages/AnnuitySavingProduct';
 const queryClient = new QueryClient()   //2번
 
 const router = createBrowserRouter([
@@ -26,8 +27,8 @@ const router = createBrowserRouter([
       { path : 'deposit/:bankCode/:productCode', element : <DepositProduct/> },
       { path : 'savings', element : <Savings/>},
       { path : 'savings/:bankCode/:productCode', element : <SavingsProduct/>},
-      { path : 'AnnuitySaving', element : <AnnuitySaving/>},
-      { path : 'AnnuitySaving/:bankCode/:productCode', element : <AnnuitySaving/>},
+      { path : 'annuity', element : <AnnuitySaving/>},
+      { path : 'annuity/:bankCode/:productCode', element : <AnnuitySavingProduct/>},
 
     ]
   }

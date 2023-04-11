@@ -7,7 +7,7 @@ export default function InterestSelectBtn({interest, setInterest, notClickedBtnS
             <div className='mx-auto w-full sm:w-2/3 lg:w-1/2'>
                 <span className="inline-block text-gray-500 text-sm md:text-base font-semibold ">이자계산방법</span>
 
-                <div className="flex flex-wrap items-center mt-2 flex-nowrap">
+                <div className="flex items-center mt-2 flex-nowrap">
                     <button onClick= {
                            () =>{
                             setInterest("all-interest"); 

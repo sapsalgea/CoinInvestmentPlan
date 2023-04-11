@@ -7,7 +7,7 @@ export default function SavingsAccumulationTypeBtn({accumulation, setAccumulatio
             <div className='mx-auto w-full sm:w-2/3 lg:w-1/2'>
                 <span className="inline-block text-gray-500 text-sm md:text-base font-semibold ">적립유형</span>
 
-                <div className="flex flex-wrap items-center mt-2 flex-nowrap">
+                <div className="flex items-center mt-2 flex-nowrap">
                     <button onClick= {
                            () =>{
                             setAccumulation("all-accumulation"); 

@@ -23,7 +23,7 @@ export default function BankingSectorSelectBtn({
           금융권역
         </span>
 
-        <div className='flex flex-wrap items-center mt-2 flex-nowrap'>
+        <div className='flex items-center mt-2 flex-nowrap'>
           <button
             onClick={() => {
               setBankingSector("all-bankingSector");
