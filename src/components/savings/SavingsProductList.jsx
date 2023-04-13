@@ -31,11 +31,12 @@ export default function SavingsProductList({ result , innerRef  }) {
                     <div
                       key={
                         savingsData.baseList__fin_co_no +
-                        savingsData.baseList__fin_prdt_cd+(outsideIndex*10)+insideIndex+1
+                        savingsData.baseList__fin_prdt_cd+(outsideIndex*10)+(insideIndex+1)
                       }
                       role='listitem'
                       className='bg-white cursor-pointer shadow rounded-2xl flex relative mt-5'
                       onClick={()=>{navigate(`/savings/${savingsData.baseList__fin_co_no}/${savingsData.baseList__fin_prdt_cd}`)}}
+                      ref={result.length-1 === outsideIndex && (resultElement.data.length-1)=== insideIndex ?  innerRef : null}
                     >
                       
                       <div className='w-full p-8 pb-12 flex items-center justify-between '>
@@ -89,7 +90,6 @@ export default function SavingsProductList({ result , innerRef  }) {
   
           })
         }
-          <div ref={innerRef}>-</div>
         
       </div>
     );

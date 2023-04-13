@@ -28,11 +28,12 @@ export default function AnnuityProductList({ result , innerRef  }) {
                     <div
                       key={
                         annuityData.baseList__fin_co_no +
-                        annuityData.baseList__fin_prdt_cd+(outsideIndex*10)+insideIndex+1
+                        annuityData.baseList__fin_prdt_cd+(outsideIndex*10)+(insideIndex+1)
                       }
                       role='listitem'
                       className='bg-white cursor-pointer shadow rounded-2xl flex relative mt-5'
                       onClick={()=>{navigate(`/annuity/${annuityData.baseList__fin_co_no}/${annuityData.baseList__fin_prdt_cd}`)}}
+                      ref={result.length-1 === outsideIndex && (resultElement.data.length-1)=== insideIndex ?  innerRef : null}
                     >
                       
                       <div className='w-full p-8 pb-12 flex items-center justify-between '>
@@ -79,7 +80,7 @@ export default function AnnuityProductList({ result , innerRef  }) {
   
           })
         }
-          <div ref={innerRef}>-</div>
+    
   
       </div>
     );

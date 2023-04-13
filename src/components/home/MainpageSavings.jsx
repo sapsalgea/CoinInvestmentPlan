@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainpageSavings({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
 
     const [savings, setSavings] =  useState('020000');
+
+    let navigate = useNavigate();
    
     return (
         <>
@@ -48,7 +51,11 @@ export default function MainpageSavings({resultMainData, notClickedBtnStyle, cli
                             .filter((savingsData)=>savingsData.topFinGrpNo === savings)
                             .map(function(savingsData){
                                 return(
-                                    <div key={savingsData.baseList__fin_co_no + savingsData.baseList__fin_prdt_cd} role="listitem" className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30">
+                                    <div 
+                                     key={savingsData.baseList__fin_co_no + savingsData.baseList__fin_prdt_cd} 
+                                     role="listitem" 
+                                     className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30"
+                                     onClick={()=>{navigate(`/savings/${savingsData.baseList__fin_co_no}/${savingsData.baseList__fin_prdt_cd}`)}}>
                                         <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                                         <div className="w-full p-8">
                                             <div className="md:flex items-center justify-between">

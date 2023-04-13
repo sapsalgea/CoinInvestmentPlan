@@ -41,7 +41,10 @@ export default function SavingsBankProductList({ bankProductResult }) {
                   }
                   role='listitem'
                   className='bg-white cursor-pointer shadow rounded-lg mt-4 flex'
-                  onClick={()=>{navigate(`/savings/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`)}}
+                  onClick={()=>{
+                    navigate(`/savings/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`);
+                    window.scrollTo(0, 0);
+                }}
                 >
                   <div className='w-2.5  h-auto bg-green-600 rounded-tl-md rounded-bl-md' />
                   

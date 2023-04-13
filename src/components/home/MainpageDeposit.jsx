@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function MainpageDeposit({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
 
     const [deposit, setDeposit] =  useState('020000');
 
+    let navigate = useNavigate();
     
     return (
         <>
@@ -46,7 +48,12 @@ export default function MainpageDeposit({resultMainData, notClickedBtnStyle, cli
                             .filter((depositData)=>depositData.topFinGrpNo === deposit)
                             .map(function(depositData){
                                 return(
-                                    <div key={depositData.baseList__fin_co_no + depositData.baseList__fin_prdt_cd} role="listitem" className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30">
+                                    <div 
+                                    key={depositData.baseList__fin_co_no + depositData.baseList__fin_prdt_cd} 
+                                    role="listitem" 
+                                    className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30"
+                                    onClick={()=>{navigate(`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`)}}
+                                    >
                                         <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                                         <div className="w-full p-8">
                                             <div className="md:flex items-center justify-between">
