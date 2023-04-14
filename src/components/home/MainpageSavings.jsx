@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function MainpageSavings({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
 
     const [savings, setSavings] =  useState('020000');
 
-    let navigate = useNavigate();
    
     return (
         <>
@@ -51,18 +50,19 @@ export default function MainpageSavings({resultMainData, notClickedBtnStyle, cli
                             .filter((savingsData)=>savingsData.topFinGrpNo === savings)
                             .map(function(savingsData){
                                 return(
-                                    <div 
+                                    <Link 
                                      key={savingsData.baseList__fin_co_no + savingsData.baseList__fin_prdt_cd} 
                                      role="listitem" 
                                      className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30"
-                                     onClick={()=>{navigate(`/savings/${savingsData.baseList__fin_co_no}/${savingsData.baseList__fin_prdt_cd}`)}}>
+                                     to={`/savings/${savingsData.baseList__fin_co_no}/${savingsData.baseList__fin_prdt_cd}`}
+                                     >
                                         <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                                         <div className="w-full p-8">
                                             <div className="md:flex items-center justify-between">
                                                 <h2 className="text-2xl font-semibold leading-6 text-gray-800">{savingsData.baseList__fin_prdt_nm}</h2>
                                                 <div>
 
-                                                    <p className="text-xl md:mt-0 mt-4 font-semibold leading-6 text-gray-900">
+                                                    <p className="text-xl md:mt-8 mt-4 font-semibold leading-6 text-gray-900 whitespace-nowrap md:text-right">
                                                         최고 : {savingsData.optionList__intr_rate2}<span className="font-normal text-base">%</span><br/>
                                                         <span className="font-normal text-base">기본 : {savingsData.optionList__intr_rate} %</span>
                                                     </p>
@@ -71,7 +71,7 @@ export default function MainpageSavings({resultMainData, notClickedBtnStyle, cli
                                             </div>
                                             <p className="md:w-80 text-base leading-6 mt-4 text-gray-600">{savingsData.baseList__kor_co_nm}</p>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }

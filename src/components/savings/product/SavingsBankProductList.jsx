@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function SavingsBankProductList({ bankProductResult }) {
     
@@ -9,7 +9,7 @@ export default function SavingsBankProductList({ bankProductResult }) {
   
     let productOverallData = bankProductResult[0];
   
-    let navigate = useNavigate();
+
   
     return (
       <>
@@ -32,32 +32,32 @@ export default function SavingsBankProductList({ bankProductResult }) {
           </div>
   
           <div className=' w-full px-4 sm:px-0 mt-8' role='list'>
-            {bankProductResult.map(function (depositData) {
+            {bankProductResult.map(function (depositData,index) {
               return (
-                <div
+                <Link
                   key={
                     depositData.baseList__fin_co_no +
-                    depositData.baseList__fin_prdt_cd
+                    depositData.baseList__fin_prdt_cd+index
                   }
                   role='listitem'
                   className='bg-white cursor-pointer shadow rounded-lg mt-4 flex'
+                  to={`/savings/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`}
                   onClick={()=>{
-                    navigate(`/savings/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`);
                     window.scrollTo(0, 0);
                 }}
                 >
                   <div className='w-2.5  h-auto bg-green-600 rounded-tl-md rounded-bl-md' />
                   
                   <div className='flex justify-between w-full p-6'>
-                    <div className='flex items-center sm:basis-10/12'>
-                      <h2 className='text-lg sm:text-xl font-semibold leading-6 text-gray-800'>
+                    <div className='my-auto sm:basis-10/12'>
+                      <h2 className='inline-block text-lg sm:text-xl font-semibold leading-6 text-gray-800'>
                         {depositData.baseList__fin_prdt_nm}
                         
                       </h2>
                       {
                         depositData.optionList__rsrv_type === "S"
-                        ? <p class="ml-1 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{depositData.optionList__rsrv_type_nm}</p>
-                        : <p class="ml-1 bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{depositData.optionList__rsrv_type_nm}</p>
+                        ? <p className="inline-block ml-1 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{depositData.optionList__rsrv_type_nm}</p>
+                        : <p className="inline-block ml-1 bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{depositData.optionList__rsrv_type_nm}</p>
                       }
                       
                     </div>
@@ -76,7 +76,7 @@ export default function SavingsBankProductList({ bankProductResult }) {
                       </p>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

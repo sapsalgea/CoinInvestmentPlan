@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function MainpageAnnuitySaving({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
    
     const [annuitySaving, setAnnuitySaving] =  useState('201');
     const [annuitySavingName, setAnnuityName] =  useState('금리연동형');
 
-    let navigate = useNavigate();
+
 
     return (
         <>
@@ -120,11 +120,12 @@ export default function MainpageAnnuitySaving({resultMainData, notClickedBtnStyl
                             .filter((annuitySavingData)=>annuitySavingData.baseList__prdt_type === annuitySaving)
                             .map(function(annuitySavingData){
                                 return(
-                                    <div 
+                                    <Link 
                                     key={annuitySavingData.baseList__fin_co_no + annuitySavingData.baseList__fin_prdt_cd} 
                                     role="listitem" 
                                     className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30"
-                                    onClick={()=>{navigate(`/annuity/${annuitySavingData.baseList__fin_co_no}/${annuitySavingData.baseList__fin_prdt_cd}`)}}>
+                                    to={`/annuity/${annuitySavingData.baseList__fin_co_no}/${annuitySavingData.baseList__fin_prdt_cd}`}
+                                    >
                                         <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                                         <div className="w-full p-8">
                                             <div className="md:flex items-center justify-between">
@@ -138,7 +139,7 @@ export default function MainpageAnnuitySaving({resultMainData, notClickedBtnStyl
                                             </div>
                                             <p className="md:w-80 text-base leading-6 mt-4 text-gray-600">{annuitySavingData.baseList__kor_co_nm}</p>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }

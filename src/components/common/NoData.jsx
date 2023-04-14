@@ -3,7 +3,7 @@ import React from "react";
 export default function NoData() {
   return (
     <>
-      <div className='mt-10 mx-auto w-full sm:w-2/3 lg:w-1/2'>
+      <div className='mt-10 mx-auto w-full sm:w-2/3 xl:w-1/2'>
         <div
           className='flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50'
           role='alert'

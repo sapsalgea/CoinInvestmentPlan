@@ -25,7 +25,7 @@ export default function BankSelectModal({ setShowModal, setDepositBankNameList ,
               </button>
             </div>
             {/*body*/}
-            <div className='relative p-6 overflow-y-scroll  h-1/8'>
+            <div className='relative p-0.5 sm:p-6 overflow-y-scroll  h-1/8'>
               <BankNameListCard
                 copyDepositBankNameList={copyDepositBankNameList}
                 setCopyDepositBankNameList={setCopyDepositBankNameList}

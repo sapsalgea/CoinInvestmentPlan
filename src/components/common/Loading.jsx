@@ -3,7 +3,7 @@ import React from "react";
 export default function Loading() {
   return (
     <>
-      <div className='mt-10 mx-auto w-full sm:w-2/3 lg:w-1/2'>
+      <div className='mt-10 mx-auto w-full sm:w-2/3 xl:w-1/2'>
         <h5 className='mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white opacity-20'>
           로딩중입니다.
         </h5>

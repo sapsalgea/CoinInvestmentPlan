@@ -24,7 +24,7 @@ export default function BankNameListCard({ copyDepositBankNameList, setCopyDepos
           .map((bankItem, index) => {
             return (
               <div
-                className={` ${bankItem.isSelected ? 'grayscale-0 border-green-500 font-bold text-blue-600 bg-gray-100' : 'grayscale border-gray-200'} flex flex-col items-center h-32 p-1 m-1 border-solid border-2  `}
+                className={` ${bankItem.isSelected ? 'grayscale-0 border-green-500 font-bold text-blue-600 bg-gray-100' : 'grayscale border-gray-200'} flex flex-col items-center h-28 sm:h-32 p-1 m-1 border-solid border-2  `}
 
                 key={bankItem.baseList__fin_co_no + index}
                 onClick={()=>{
@@ -36,12 +36,12 @@ export default function BankNameListCard({ copyDepositBankNameList, setCopyDepos
                 }}
               >
                 <img
-                  className='rounded-full h-10 w-10 inline mt-5'
+                  className='rounded-full h-6 w-6 sm:h-10 sm:w-10 inline mt-5'
                   src={`${process.env.PUBLIC_URL}/image/bankImage/${bankItem.baseList__fin_co_no}.png`}
                   onError={onErrorImg}
                   alt={bankItem.baseList__fin_co_no}
                 />
-                <p className='p-1 w-24 text-center text-sm mb-4'>{bankItem.baseList__kor_co_nm}</p>
+                <p className='p-1 w-20 sm:w-24 text-center text-xs sm:text-sm mb-4'>{bankItem.baseList__kor_co_nm}</p>
                 
               </div>
             );

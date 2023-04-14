@@ -4,8 +4,8 @@ export default function SavingsAccumulationTypeBtn({accumulation, setAccumulatio
     return (
         <div className='flex items-center mt-10'>
 
-            <div className='mx-auto w-full sm:w-2/3 lg:w-1/2'>
-                <span className="inline-block text-gray-500 text-sm md:text-base font-semibold ">적립유형</span>
+            <div className='mx-auto w-full sm:w-2/3 xl:w-1/2'>
+                <p className="mb-3 sm:mb-1 text-center sm:text-left sm:ml-2 text-gray-500 text-sm md:text-base font-semibold">적립유형</p>
 
                 <div className="flex items-center mt-2 flex-nowrap">
                     <button onClick= {

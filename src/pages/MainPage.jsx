@@ -23,7 +23,7 @@ export default function MainPage() {
     )
 
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             
 
             {result.isLoading && <Loading/>}

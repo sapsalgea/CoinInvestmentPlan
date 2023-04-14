@@ -11,6 +11,7 @@ import JsonDepositBankNameList from '../json/depositBankNameList.json';
 import Loading from '../components/common/Loading';
 import NoData from '../components/common/NoData';
 import LoadingError from '../components/common/LoadingError';
+import HeadingTextBox from '../components/common/HeadingTextBox';
 // import BankNameSelectBtn from '../components/button/BankNameSelectBtn';
 
 export default function Deposit() {
@@ -21,11 +22,10 @@ export default function Deposit() {
     const [depositBankNameList, setDepositBankNameList] = useState(JsonDepositBankNameList);
     const [clickedBankName,setClickedBankName] = useState('no-data');
 
-    
 
     const notClickedBtnStyle = "bg-white hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600 border  rounded-md transition duration-100";
     const clickedBtnStyle = "bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
-    const commonBtnStyle = "rounded-md py-4 px-6 mr-1 basis-1/3";
+    const commonBtnStyle = "rounded-md py-4 sm:py-3 px-3 sm:px-5 mx-1 basis-1/3  text-xs sm:text-base h-full";
 
 
 
@@ -87,18 +87,21 @@ export default function Deposit() {
     return (
         
         <div>
+
+
+            <HeadingTextBox headingText={"정기예금"}/>
             <BankingSectorSelectBtn bankingSector={bankingSector} setBankingSector={setBankingSector} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle} depositBankNameList={depositBankNameList} setDepositBankNameList={setDepositBankNameList} setClickedBankName={setClickedBankName}/>
             <PeriodSelectBtn period={period} setPeriod={setPeriod} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
             <InterestSelectBtn interest={interest} setInterest={setInterest} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
             
 
-            {/* <div className='mx-auto w-full sm:w-2/3 lg:w-1/2 flex flex-wrap flex-nowrap items-center bg-gray-200 rounded-t py-4 px-4'>
+            {/* <div className='mx-auto w-full sm:w-2/3 xl:w-1/2 flex flex-wrap flex-nowrap items-center bg-gray-200 rounded-t py-4 px-4'>
                 <BankNameSelectBtn depositBankNameList={depositBankNameList} setDepositBankNameList={setDepositBankNameList} setClickedBankName={setClickedBankName}/>
                 <div>필터</div>
             </div> */}
 
             <div
-                className='mt-10 mx-auto w-full sm:w-2/3 lg:w-1/2'
+                className='mt-10 mx-auto w-full sm:w-2/3 xl:w-1/2'
             >
             
                 <hr className="h-px my-8 bg-gray-400 border-0"/>

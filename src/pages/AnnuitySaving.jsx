@@ -8,6 +8,7 @@ import NoData from '../components/common/NoData';
 import LoadingError from '../components/common/LoadingError';
 import AnnuitySavingSelectBtn from '../components/button/AnnuitySavingSelectBtn';
 import AnnuityProductList from '../components/annuity/AnnuityProductList';
+import HeadingTextBox from '../components/common/HeadingTextBox';
 
 export default function AnnuitySaving() {
 
@@ -18,8 +19,7 @@ export default function AnnuitySaving() {
 
     const notClickedBtnStyle = "bg-white hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600 border  rounded-md transition duration-100";
     const clickedBtnStyle = "bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
-    const commonBtnStyle = "rounded-md py-4 px-6 w-full break-keep h-full";
-
+    const commonBtnStyle = "rounded-md py-4 sm:py-3 px-3 sm:px-6 basis-1/3  text-xs sm:text-base w-full break-keep h-full";
 
 
     //무한스크롤
@@ -80,12 +80,12 @@ export default function AnnuitySaving() {
     return (
         
         <div>
- 
+            <HeadingTextBox headingText={"연금저축"}/>
             <AnnuitySavingSelectBtn annuityType={annuityType} setAnnuityType={setAnnuityType} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
 
 
             <div
-                className='mt-10 mx-auto w-full sm:w-2/3 lg:w-1/2'
+                className='mt-10 mx-auto w-full sm:w-2/3 xl:w-1/2'
             >
             
                 <hr className="h-px my-8 bg-gray-400 border-0"/>

@@ -17,22 +17,22 @@ export default function ProductInfo({productData}) {
       <div className='flex justify-between px-4 mx-auto max-w-screen-xl '>
         <div className='mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue'>
           <header className='mb-4 lg:mb-6 not-format'>
-            <div className='flex items-center mb-3 not-italic'>
-              <div className='inline-flex items-center mr-3 text-sm text-gray-900'>
+            <div className='flex justify-center sm:justify-start items-center mb-3'>
+              <div className='flex items-center mr-3 text-sm text-gray-900'>
                 <img
-                  className='mr-4 w-16 h-16 rounded-full'
+                  className='mr-4 w-12 h-12 sm:w-16 sm:h-16 rounded-full'
                   src={`${process.env.PUBLIC_URL}/image/bankImage/${productOverallData.baseList__fin_co_no}.png`}
                   onError={onErrorImg}
                   alt={productOverallData.baseList__fin_co_no}
                 />
                 <div>
                   <p
-                    className='text-xl font-bold text-gray-900'
+                    className='text-lg sm:text-xl font-bold text-gray-900'
                   >
                     {productOverallData.baseList__kor_co_nm}
                   </p>
 
-                  <p className='text-xl font-bold text-gray-700'>
+                  <p className='text-lg sm:text-xl font-bold text-gray-900'>
                     {productOverallData.baseList__fin_prdt_nm}
                   </p>
                   
@@ -41,7 +41,7 @@ export default function ProductInfo({productData}) {
               </div>  
             </div>
 
-            <p className="text-gray-500 mb-4">공시 시작일 : {productOverallData.baseList__dcls_strt_day.substr(0, 4) + '년 ' + productOverallData.baseList__dcls_strt_day.substr(4, 2) + '월 ' + productOverallData.baseList__dcls_strt_day.substr(6, 2)+ '일'}</p>
+            <p className="text-sm sm:text-base text-gray-500 mb-4 text-center sm:text-left">공시 시작일 : {productOverallData.baseList__dcls_strt_day.substr(0, 4) + '년 ' + productOverallData.baseList__dcls_strt_day.substr(4, 2) + '월 ' + productOverallData.baseList__dcls_strt_day.substr(6, 2)+ '일'}</p>
 
             <hr className='mb-4'/>
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default function MainpageDeposit({resultMainData, notClickedBtnStyle, clickedBtnStyle}) {
 
     const [deposit, setDeposit] =  useState('020000');
 
-    let navigate = useNavigate();
+
     
     return (
         <>
@@ -48,11 +48,11 @@ export default function MainpageDeposit({resultMainData, notClickedBtnStyle, cli
                             .filter((depositData)=>depositData.topFinGrpNo === deposit)
                             .map(function(depositData){
                                 return(
-                                    <div 
+                                    <Link 
                                     key={depositData.baseList__fin_co_no + depositData.baseList__fin_prdt_cd} 
                                     role="listitem" 
                                     className="bg-white cursor-pointer shadow rounded-lg mt-3 flex relative z-30"
-                                    onClick={()=>{navigate(`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`)}}
+                                    to={`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`}
                                     >
                                         <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                                         <div className="w-full p-8">
@@ -60,7 +60,7 @@ export default function MainpageDeposit({resultMainData, notClickedBtnStyle, cli
                                                 <h2 className="text-2xl font-semibold leading-6 text-gray-800">{depositData.baseList__fin_prdt_nm}</h2>
                                                 <div>
 
-                                                    <p className="text-xl md:mt-0 mt-4 font-semibold leading-6 text-gray-900">
+                                                    <p className="text-xl md:mt-6 mt-4 font-semibold leading-6 text-gray-900 whitespace-nowrap md:text-right">
                                                         최고 : {depositData.optionList__intr_rate2}<span className="font-normal text-base">%</span><br/>
                                                         <span className="font-normal text-base">기본 : {depositData.optionList__intr_rate} %</span>
                                                     </p>
@@ -69,7 +69,7 @@ export default function MainpageDeposit({resultMainData, notClickedBtnStyle, cli
                                             </div>
                                             <p className="md:w-80 text-base leading-6 mt-4 text-gray-600">{depositData.baseList__kor_co_nm}</p>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }

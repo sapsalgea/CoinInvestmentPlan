@@ -16,20 +16,20 @@ export default function AnnuityProductInfo ({productData}) {
       <div className='flex justify-between px-2 sm:px-4 mx-auto max-w-screen-xl '>
         <div className='mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue'>
           <header className='mb-4 lg:mb-6 not-format'>
-            <div className='flex items-center mb-3 not-italic'>
-              <div className='inline-flex items-center mr-3 text-sm text-gray-900'>
+          <div className='flex justify-center sm:justify-start items-center mb-3'>
+                <div className='flex items-center mr-3 text-sm text-gray-900'>
                
-                <div>
-                  <p className= {`ml-1 mb-1.5 text-center w-40 px-2 text-xs rounded-full sm:px-4 sm:py-1 text-blue-900 bg-blue-100`} >
+                <div className='text-center'>
+                  <p className= 'mx-auto sm:ml-1 mb-1.5 text-center w-40 px-2 text-xs rounded-full sm:px-4 py-0.5 sm:py-1 text-blue-900 bg-blue-100' >
                               상품유형 : {productOverallData.baseList__prdt_type_nm}
                   </p>
                   <p
-                    className='text-xl font-bold text-gray-900'
+                    className='text-lg sm:text-xl font-bold text-gray-900 text-center sm:text-left'
                   >
                     {productOverallData.baseList__kor_co_nm}
                   </p>
 
-                  <p className='text-xl font-bold text-gray-700'>
+                  <p className='text-lg sm:text-xl font-bold text-gray-900 text-center sm:text-left'>
                     {productOverallData.baseList__fin_prdt_nm}
                   </p>
                   
@@ -38,8 +38,7 @@ export default function AnnuityProductInfo ({productData}) {
               </div>  
             </div>
 
-            <p className="text-gray-500">판매 개시일 : {productOverallData.baseList__sale_strt_day.substr(0, 4) + '년 ' + productOverallData.baseList__sale_strt_day.substr(4, 2) + '월 ' + productOverallData.baseList__sale_strt_day.substr(6, 2)+ '일'}</p>
-            <p className="text-gray-500 mb-4">공시 시작일 : {productOverallData.baseList__dcls_strt_day.substr(0, 4) + '년 ' + productOverallData.baseList__dcls_strt_day.substr(4, 2) + '월 ' + productOverallData.baseList__dcls_strt_day.substr(6, 2)+ '일'}</p>
+            <p className="text-sm sm:text-base text-gray-500 mb-4 text-center sm:text-left">공시 시작일 : {productOverallData.baseList__dcls_strt_day.substr(0, 4) + '년 ' + productOverallData.baseList__dcls_strt_day.substr(4, 2) + '월 ' + productOverallData.baseList__dcls_strt_day.substr(6, 2)+ '일'}</p>
             
 
             <hr className='mb-4'/>
@@ -175,28 +174,28 @@ export default function AnnuityProductInfo ({productData}) {
 
             {
               productData.map((item, index)=>{
-                return <>
-                  <div className='grid grid-cols-2 sm:grid-cols-4  text-center mb-10 sm:p-2'>
-                    <p className='col-span-full font-bold bg-blue-700 text-white py-2'>상품옵션 {index+1}</p>
+                return <div key={item.optionList__pnsn_recp_trm_nm+index}>
+                          <div  className='grid grid-cols-2 sm:grid-cols-4  text-center mb-10 sm:p-2'>
+                            <p className='col-span-full font-bold bg-blue-700 text-white py-2'>상품옵션 {index+1}</p>
 
-                    <p className={`${optionItemTitleStyle}`}>연금수령기간</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_recp_trm_nm}</p>
-                    <p className={`${optionItemTitleStyle}`}>연금 가입연령</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_entr_age_nm}</p>
+                            <p className={`${optionItemTitleStyle}`}>연금수령기간</p>
+                            <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_recp_trm_nm}</p>
+                            <p className={`${optionItemTitleStyle}`}>연금 가입연령</p>
+                            <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_entr_age_nm}</p>
 
-                    <p className={`${optionItemTitleStyle}`}>월 납입액</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__mon_paym_atm_nm}</p>
-                    <p className={`${optionItemTitleStyle}`}>납입기간</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__paym_prd_nm}</p>
+                            <p className={`${optionItemTitleStyle}`}>월 납입액</p>
+                            <p className={`${optionItemContentStyle}`}>{item.optionList__mon_paym_atm_nm}</p>
+                            <p className={`${optionItemTitleStyle}`}>납입기간</p>
+                            <p className={`${optionItemContentStyle}`}>{item.optionList__paym_prd_nm}</p>
 
-                    <p className={`${optionItemTitleStyle}`}>연금 개시연령</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_strt_age_nm}</p>
-                    <p className={`${optionItemTitleStyle}`}>연금 수령액</p>
-                    <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_recp_amt}</p>
+                            <p className={`${optionItemTitleStyle}`}>연금 개시연령</p>
+                            <p className={`${optionItemContentStyle}`}>{item.optionList__pnsn_strt_age_nm}</p>
+                            <p className={`${optionItemTitleStyle}`}>연금 수령액</p>
+                            <p className={`${optionItemContentStyle}`}>{parseInt(item.optionList__pnsn_recp_amt).toLocaleString('ko-KR')}원</p>
 
-                  </div>
-                  
-                </>
+                          </div>
+                          
+                        </div>
               })
             }
 

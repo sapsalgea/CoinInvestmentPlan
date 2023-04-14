@@ -7,7 +7,8 @@ export default function PageHeader() {
 
   const activeStyle = {
     color: 'red',
-    textDecoration: 'underline'
+    fontWeight: 'bold'
+    
   }
   const deactiveStyle = {
     color: 'black',
@@ -16,7 +17,7 @@ export default function PageHeader() {
   
 
   return (
-    <nav className="w-full bg-white shadow">
+    <nav className="w-full bg-white border-b-2">
     <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -72,7 +73,7 @@ export default function PageHeader() {
 
                       <NavLink to="/deposit" style={({isActive}) => {
                         return isActive ? activeStyle : deactiveStyle;
-                      }}>예금</NavLink>
+                      }}>정기예금</NavLink>
 
                     </li>
                     <li className="text-gray-600 hover:text-blue-600">

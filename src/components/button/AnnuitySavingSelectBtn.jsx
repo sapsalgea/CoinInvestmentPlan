@@ -5,9 +5,8 @@ export default function AnnuitySavingSelectBtn({annuityType, setAnnuityType, not
     return (
         <div className='flex items-center mt-10'>
 
-            <div className='mx-auto w-full sm:w-2/3 lg:w-1/2'>
-                <span className="inline-block text-gray-500 text-sm md:text-base font-semibold mb-2">연금상품유형</span>
-
+            <div className='mx-auto w-full sm:w-2/3 xl:w-1/2'>
+    
                 <div className="grid grid-cols-3 gap-2 items-center p-1">
                     
                     <button onClick= {

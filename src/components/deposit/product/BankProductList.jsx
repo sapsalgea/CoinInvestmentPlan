@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function BankProductList({ bankProductResult }) {
   const onErrorImg = (e) => {
@@ -8,7 +8,7 @@ export default function BankProductList({ bankProductResult }) {
 
   let productOverallData = bankProductResult[0];
 
-  let navigate = useNavigate();
+
 
   return (
     <>
@@ -31,17 +31,17 @@ export default function BankProductList({ bankProductResult }) {
         </div>
 
         <div className=' w-full px-4 sm:px-0 mt-8' role='list'>
-          {bankProductResult.map(function (depositData) {
+          {bankProductResult.map(function (depositData,index) {
             return (
-              <div
+              <Link
                 key={
                   depositData.baseList__fin_co_no +
-                  depositData.baseList__fin_prdt_cd
+                  depositData.baseList__fin_prdt_cd+index
                 }
                 role='listitem'
                 className='bg-white cursor-pointer shadow rounded-lg mt-4 flex'
+                to={`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`}
                 onClick={()=>{
-                  navigate(`/deposit/${depositData.baseList__fin_co_no}/${depositData.baseList__fin_prdt_cd}`);
                   window.scrollTo(0, 0);
               }}
               >
@@ -68,7 +68,7 @@ export default function BankProductList({ bankProductResult }) {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
