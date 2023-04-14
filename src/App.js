@@ -6,12 +6,14 @@ import ScrollToTop from './components/scroll/ScrollToTop';
 
 function App() {
   return (
-    <>
+    <div className='flex flex-col h-screen'>
       <ScrollToTop/>
       <PageHeader></PageHeader>
-      <Outlet/>
+      <div className="flex-1 m-0 p-0">
+        <Outlet/>
+      </div>
       <Footer/>
-    </>
+    </div>
   );
 }
 
