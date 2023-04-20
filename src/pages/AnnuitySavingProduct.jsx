@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from '../components/common/Loading';
 import LoadingError from '../components/common/LoadingError';
 import AnnuityProductInfo from '../components/annuity/product/AnnuityProductInfo';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
 
 export default function AnnuitySavingProduct() {
     let params = useParams();
@@ -34,17 +35,34 @@ export default function AnnuitySavingProduct() {
   
   
   
-  
+    let now = new Date();
+    let year = now.getFullYear();
   
     
   
     return (
       <>
-        {(productInfoResult.isLoading) && <Loading/>}
-        {productInfoResult.error && <LoadingError/>}
-        {productInfoResult.data  && <AnnuityProductInfo productData={productInfoResult.data}/>}
-        
-  
+        {productInfoResult.isLoading && <Loading />}
+        {(productInfoResult.isLoading) && (
+          <SeoHelmet
+          title="로딩중입니다."
+          description="로딩중입니다."
+          keywords="로딩중입니다."
+          imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+        />
+        )}
+        {productInfoResult.error && <LoadingError />}
+        {productInfoResult.data && (
+          <AnnuityProductInfo productData={productInfoResult.data} />
+        )}
+        {productInfoResult.data && (
+          <SeoHelmet
+            title={`${productInfoResult.data[0].baseList__fin_prdt_nm} - ${year}년 연금저축 상품정보`}
+            description={`${productInfoResult.data[0].baseList__fin_prdt_nm} - ${productInfoResult.data[0].baseList__prdt_type_nm} 연금저축 상품정보입니다.[${year}년]`}
+            keywords={`${productInfoResult.data[0].baseList__fin_prdt_nm}`}
+            imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+          />
+        )}
       </>
     );
   }

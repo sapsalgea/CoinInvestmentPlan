@@ -14,6 +14,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"  //1번
 import DepositProduct from './pages/DepositProduct';
 import SavingsProduct from './pages/SavingsProduct';
 import AnnuitySavingProduct from './pages/AnnuitySavingProduct';
+import { Provider } from 'react-redux';
+import ButtonTypeStore from './store';
+import { HelmetProvider } from 'react-helmet-async';
+
+
 const queryClient = new QueryClient()   //2번
 
 const router = createBrowserRouter([
@@ -38,7 +43,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <Provider store={ButtonTypeStore}>
+          <RouterProvider router={router} />
+        </Provider>
+      </HelmetProvider>
     </React.StrictMode>
   </QueryClientProvider>
 );

@@ -7,21 +7,39 @@ import PeriodSelectBtn from '../components/button/PeriodSelectBtn';
 import InterestSelectBtn from '../components/button/InterestSelectBtn';
 import DepositProductList from '../components/deposit/DepositProductList';
 import { useInView } from 'react-intersection-observer';
-import JsonDepositBankNameList from '../json/depositBankNameList.json';
 import Loading from '../components/common/Loading';
 import NoData from '../components/common/NoData';
 import LoadingError from '../components/common/LoadingError';
 import HeadingTextBox from '../components/common/HeadingTextBox';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDepositBankingSector, setDepositClickedBankName, setDepositInterest, setDepositPeriod, setSaveDepositBankNameList } from '../store';
 // import BankNameSelectBtn from '../components/button/BankNameSelectBtn';
 
 export default function Deposit() {
 
-    const [bankingSector, setBankingSector] =  useState('all-bankingSector');
-    const [period, setPeriod] =  useState('12');
-    const [interest, setInterest] =  useState('all-interest');
-    const [depositBankNameList, setDepositBankNameList] = useState(JsonDepositBankNameList);
-    const [clickedBankName,setClickedBankName] = useState('no-data');
+    
 
+    let dispatch = useDispatch();
+    let depositBankingSector = useSelector((state)=>{return state.depositBankingSector});
+    let depositPeriod = useSelector((state)=>{return state.depositPeriod});
+    let depositInterest = useSelector((state)=>{return state.depositInterest});
+    let saveDepositBankNameList = useSelector((state)=>{return state.saveDepositBankNameList});
+    let depositClickedBankName = useSelector((state)=>{return state.depositClickedBankName});
+    
+    const [bankingSector, setBankingSector] =  useState(depositBankingSector);
+    const [period, setPeriod] =  useState(depositPeriod);
+    const [interest, setInterest] =  useState(depositInterest);
+    const [depositBankNameList, setDepositBankNameList] = useState(saveDepositBankNameList);
+    const [clickedBankName,setClickedBankName] = useState(depositClickedBankName);
+
+    useEffect(()=>{
+        dispatch(setDepositBankingSector(bankingSector));
+        dispatch(setDepositPeriod(period));
+        dispatch(setDepositInterest(interest));
+        dispatch(setSaveDepositBankNameList(depositBankNameList));
+        dispatch(setDepositClickedBankName(clickedBankName));
+    },[dispatch,bankingSector,period,interest,depositBankNameList,clickedBankName])
 
     const notClickedBtnStyle = "bg-white hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600 border  rounded-md transition duration-100";
     const clickedBtnStyle = "bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-white";
@@ -84,9 +102,20 @@ export default function Deposit() {
          
      }, [inView, result, isScrollOk]);
 
+    
+    let now = new Date();
+    let year = now.getFullYear();
+
     return (
         
         <div>
+
+        <SeoHelmet
+          title={`정기예금 금리 순위 ${year}년 비교 총정리`}
+          description={`정기예금 금리 순위 ${year}년 - 예금 이자 높은 은행 및 저축은행 정기예금 금리비교 정보`}
+          keywords='정기예금 금리, 정기예금 순위'
+          imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+        />
 
 
             <HeadingTextBox headingText={"정기예금"}/>

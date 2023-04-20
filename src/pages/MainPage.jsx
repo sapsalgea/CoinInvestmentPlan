@@ -6,6 +6,9 @@ import MainpageSavings from '../components/home/MainpageSavings';
 import MainpageAnnuitySaving from '../components/home/MainpageAnnuitySaving';
 import Loading from '../components/common/Loading';
 import LoadingError from '../components/common/LoadingError';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
+
+
 
 export default function MainPage() {
 
@@ -23,16 +26,40 @@ export default function MainPage() {
     )
 
     return (
-        <div className='max-w-7xl mx-auto'>
-            
+      <div className='max-w-7xl mx-auto'>
+        <SeoHelmet
+          title={
+            "이자가 높은 예적금상품 및 연금저축상품을 한눈에 - 코인인베스트먼트플랜(CoinInvestmentPlan)"
+          }
+          description='이자가 높은 예적금상품 및 연금저축상품을 찾고 계신가요? 코인인베스트먼트플랜(CoinInvestmentPlan)에서 한눈에 살펴보실 수 있습니다.'
+          keywords='예적금상품, 코인인베스트먼트플랜, 연금저축, 예금, 적금'
+          imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+        />
 
-            {result.isLoading && <Loading/>}
-            {result.error && <LoadingError/>}
-            {result.data && <MainpageDeposit resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}
-            {result.data && <MainpageSavings resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}
-            {result.data && <MainpageAnnuitySaving resultMainData = {result.data} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle}/>}
-            
-        </div>
+        {result.isLoading && <Loading />}
+        {result.error && <LoadingError />}
+        {result.data && (
+          <MainpageDeposit
+            resultMainData={result.data}
+            notClickedBtnStyle={notClickedBtnStyle}
+            clickedBtnStyle={clickedBtnStyle}
+          />
+        )}
+        {result.data && (
+          <MainpageSavings
+            resultMainData={result.data}
+            notClickedBtnStyle={notClickedBtnStyle}
+            clickedBtnStyle={clickedBtnStyle}
+          />
+        )}
+        {result.data && (
+          <MainpageAnnuitySaving
+            resultMainData={result.data}
+            notClickedBtnStyle={notClickedBtnStyle}
+            clickedBtnStyle={clickedBtnStyle}
+          />
+        )}
+      </div>
     );
 }
 

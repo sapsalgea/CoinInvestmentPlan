@@ -26,11 +26,11 @@ export default function BankingSectorSelectBtn({
         <div className='flex items-center mt-2 flex-nowrap'>
           <button
             onClick={() => {
-              setBankingSector("all-bankingSector");
+              setBankingSector("allBankingSector");
               setClickedBankName("no-data");
             }}
             className={`${
-              bankingSector === "all-bankingSector"
+              bankingSector === "allBankingSector"
                 ? clickedBtnStyle
                 : notClickedBtnStyle
             } ${commonBtnStyle} whitespace-nowrap`}

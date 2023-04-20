@@ -6,6 +6,7 @@ import Loading from '../components/common/Loading';
 import LoadingError from '../components/common/LoadingError';
 import SavingsProductInfo from '../components/savings/product/SavingsProductInfo';
 import SavingsBankProductList from '../components/savings/product/SavingsBankProductList';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
 
 export default function SavingsProduct() {
     let params = useParams();
@@ -57,15 +58,40 @@ export default function SavingsProduct() {
   
   
   
-    
+   let now = new Date();
+   let year = now.getFullYear();
   
     return (
       <>
-        {(productInfoResult.isLoading || bankProductResult.isLoading) && <Loading/>}
-        {productInfoResult.error && <LoadingError/>}
-        {productInfoResult.data && bankProductResult.data && <SavingsProductInfo productData={productInfoResult.data}/>}
-        {productInfoResult.data && bankProductResult.data && <SavingsBankProductList bankProductResult={bankProductResult.data}/>}
-  
+        
+        {(productInfoResult.isLoading || bankProductResult.isLoading) && (
+          <Loading />
+        )}
+
+        {(productInfoResult.isLoading || bankProductResult.isLoading) && (
+          <SeoHelmet
+          title="로딩중입니다."
+          description="로딩중입니다."
+          keywords="로딩중입니다."
+          imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+        />
+        )}
+
+        {productInfoResult.error && <LoadingError />}
+        {productInfoResult.data && bankProductResult.data && (
+          <SavingsProductInfo productData={productInfoResult.data} />
+        )}
+        {productInfoResult.data && bankProductResult.data && (
+          <SeoHelmet
+            title={`${productInfoResult.data[0].baseList__fin_prdt_nm} - ${productInfoResult.data[0].baseList__kor_co_nm} ${year}년 적금 상품정보`}
+            description={`${productInfoResult.data[0].baseList__fin_prdt_nm} - ${productInfoResult.data[0].baseList__kor_co_nm}의 적금 상품정보입니다. [${year}년]`}
+            keywords={`${productInfoResult.data[0].baseList__fin_prdt_nm}`}
+            imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+          />
+        )}
+        {productInfoResult.data && bankProductResult.data && (
+          <SavingsBankProductList bankProductResult={bankProductResult.data} />
+        )}
       </>
     );
   }

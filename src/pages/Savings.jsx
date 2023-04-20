@@ -6,22 +6,42 @@ import { useState, useEffect } from 'react';
 import PeriodSelectBtn from '../components/button/PeriodSelectBtn';
 import InterestSelectBtn from '../components/button/InterestSelectBtn';
 import { useInView } from 'react-intersection-observer';
-import JsonDepositBankNameList from '../json/depositBankNameList.json';
 import Loading from '../components/common/Loading';
 import NoData from '../components/common/NoData';
 import LoadingError from '../components/common/LoadingError';
 import SavingsAccumulationTypeBtn from '../components/button/SavingsAccumulationTypeBtn';
 import SavingsProductList from '../components/savings/SavingsProductList';
 import HeadingTextBox from '../components/common/HeadingTextBox';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSaveSavingsBankNameList, setSavingsAccumulation, setSavingsBankingSector, setSavingsClickedBankName, setSavingsInterest, setSavingsPeriod } from '../store';
 
 export default function Savings() {
 
-    const [bankingSector, setBankingSector] =  useState('all-bankingSector');
-    const [period, setPeriod] =  useState('12');
-    const [interest, setInterest] =  useState('all-interest');
-    const [depositBankNameList, setDepositBankNameList] = useState(JsonDepositBankNameList);
-    const [clickedBankName,setClickedBankName] = useState('no-data');
-    const [accumulation, setAccumulation] =  useState('all-accumulation');
+    let dispatch = useDispatch();
+    let savingsBankingSector = useSelector((state)=>{return state.savingsBankingSector});
+    let savingsPeriod = useSelector((state)=>{return state.savingsPeriod});
+    let savingsInterest = useSelector((state)=>{return state.savingsInterest});
+    let saveSavingsBankNameList = useSelector((state)=>{return state.saveSavingsBankNameList});
+    let savingsClickedBankName = useSelector((state)=>{return state.savingsClickedBankName});
+    let savingsAccumulation = useSelector((state)=>{return state.savingsAccumulation});
+
+    const [bankingSector, setBankingSector] =  useState(savingsBankingSector);
+    const [period, setPeriod] =  useState(savingsPeriod);
+    const [interest, setInterest] =  useState(savingsInterest);
+    const [depositBankNameList, setDepositBankNameList] = useState(saveSavingsBankNameList);
+    const [clickedBankName,setClickedBankName] = useState(savingsClickedBankName);
+    const [accumulation, setAccumulation] =  useState(savingsAccumulation);
+
+
+    useEffect(()=>{
+        dispatch(setSavingsBankingSector(bankingSector));
+        dispatch(setSavingsPeriod(period));
+        dispatch(setSavingsInterest(interest));
+        dispatch(setSaveSavingsBankNameList(depositBankNameList));
+        dispatch(setSavingsClickedBankName(clickedBankName));
+        dispatch(setSavingsAccumulation(accumulation));
+    },[dispatch,bankingSector,period,interest,depositBankNameList,clickedBankName,accumulation])
     
 
     const notClickedBtnStyle = "bg-white hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none text-base leading-none text-gray-600 border  rounded-md transition duration-100";
@@ -85,9 +105,21 @@ export default function Savings() {
          
      }, [inView, result, isScrollOk]);
 
+    let now = new Date();
+    let year = now.getFullYear();
+
     return (
+
+      
         
         <div>
+            <SeoHelmet
+                title={`적금 금리 순위 ${year}년 비교 총정리`}
+                description={`적금 금리 순위 ${year}년 - 적금 이자 높은 은행 및 저축은행 적금 금리 순위 정보`}
+                keywords='적금 금리, 적금 순위'
+                imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+            />
+
             <HeadingTextBox headingText={"적금"}/>
             <BankingSectorSelectBtn bankingSector={bankingSector} setBankingSector={setBankingSector} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle} depositBankNameList={depositBankNameList} setDepositBankNameList={setDepositBankNameList} setClickedBankName={setClickedBankName}/>
             <PeriodSelectBtn period={period} setPeriod={setPeriod} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>

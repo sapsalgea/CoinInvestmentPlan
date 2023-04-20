@@ -9,11 +9,21 @@ import LoadingError from '../components/common/LoadingError';
 import AnnuitySavingSelectBtn from '../components/button/AnnuitySavingSelectBtn';
 import AnnuityProductList from '../components/annuity/AnnuityProductList';
 import HeadingTextBox from '../components/common/HeadingTextBox';
+import SeoHelmet from '../components/metaTag/SeoHelmet';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAnnuitySavingAnnuityType } from '../store';
+
 
 export default function AnnuitySaving() {
 
-    const [annuityType, setAnnuityType] =  useState('201');
+    let dispatch = useDispatch();
+    let annuitySavingAnnuityType = useSelector((state)=>{return state.annuitySavingAnnuityType});
 
+    const [annuityType, setAnnuityType] =  useState(annuitySavingAnnuityType);
+
+    useEffect(()=>{
+        dispatch(setAnnuitySavingAnnuityType(annuityType));
+    },[dispatch,annuityType])
 
     
 
@@ -77,9 +87,19 @@ export default function AnnuitySaving() {
          
      }, [inView, result, isScrollOk]);
 
+    let now = new Date();
+    let year = now.getFullYear();
+
     return (
         
         <div>
+            <SeoHelmet
+                title={`연금저축 수익률 순위 ${year}년 비교 총정리`}
+                description={`연금저축 수익률 순위 ${year}년 연금저축 금리 비교 - 금리연동형, 채권형, 주식형, 주식파생형, 혼합주식형,혼합채권형, 재간접형, 혼합자산, 단기금융(MMF) 수익률 정보`}
+                keywords='연금저축 금리, 연금저축 순위'
+                imgsrc={`${process.env.PUBLIC_URL}/image/pageLogo/coininvestmentplan.png`}
+            />
+
             <HeadingTextBox headingText={"연금저축"}/>
             <AnnuitySavingSelectBtn annuityType={annuityType} setAnnuityType={setAnnuityType} notClickedBtnStyle={notClickedBtnStyle} clickedBtnStyle={clickedBtnStyle} commonBtnStyle={commonBtnStyle}/>
 
